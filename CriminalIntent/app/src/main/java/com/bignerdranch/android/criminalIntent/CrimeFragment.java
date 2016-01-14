@@ -12,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
+
 /**
  * Created by jaimejahuey on 1/14/16.
  */
@@ -63,7 +65,10 @@ public class CrimeFragment extends Fragment
         });
 
         mDateButton = (Button) v.findViewById(R.id.crime_date);
-        mDateButton.setText(mCrime.getmDate().toString());
+
+        //Changing the format of the date to display.
+        SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM d, yyyy.");
+        mDateButton.setText(formatter.format(mCrime.getmDate()).toString());
         mDateButton.setEnabled(false);
 
         mSolvedCheckBox = (CheckBox) v.findViewById(R.id.crime_solved);

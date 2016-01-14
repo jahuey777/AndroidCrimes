@@ -1,5 +1,7 @@
 package com.bignerdranch.android.criminalIntent;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -18,8 +20,8 @@ public class Crime
         //Generate unique identifier
         mID= UUID.randomUUID();
         //Sets the date to the current date by using default constructor
+        //formatting the date
         mDate = new Date();
-
     }
 
     public Date getmDate()
