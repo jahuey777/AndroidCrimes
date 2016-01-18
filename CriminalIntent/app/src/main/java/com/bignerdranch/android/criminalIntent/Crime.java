@@ -22,6 +22,7 @@ public class Crime
         //Sets the date to the current date by using default constructor
         //formatting the date
         mDate = new Date();
+
     }
 
     public Date getmDate()
@@ -60,5 +61,10 @@ public class Crime
         return mTitle;
     }
 
+    @Override
+    public String toString()
+    {
+        return mTitle;
+    }
 
 }

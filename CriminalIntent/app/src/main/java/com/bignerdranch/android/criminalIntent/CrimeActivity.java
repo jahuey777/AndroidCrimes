@@ -1,21 +1,20 @@
 package com.bignerdranch.android.criminalIntent;
 
-import android.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class CrimeActivity extends FragmentActivity
+public class CrimeActivity extends SingleFragmentActivity
 {
-
+    //Calling the subclass of singleFragmentActivity
+    /*
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crime);
+        setContentView(R.layout.activity_fragment);
 
         //using getSupportFragmentManager for HoneyCobmb
         //Or can do the following.
@@ -24,6 +23,8 @@ public class CrimeActivity extends FragmentActivity
 
         //Fragment manager maintains a back stack of fragment transactions that you can navigate
         //Fragment transactions add,remove, detach, or replace fragments in the fragment list
+
+
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
 
@@ -33,10 +34,13 @@ public class CrimeActivity extends FragmentActivity
             //So creating a new fragment transaction, include one add operation in it, and then commit
             fm.beginTransaction().add(R.id.fragmentContainer,fragment).commit();
         }
+    }*/
 
-
+    @Override
+    protected Fragment createFragment()
+    {
+        return new CrimeFragment();
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

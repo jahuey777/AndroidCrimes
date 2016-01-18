@@ -17,12 +17,12 @@ public class CrimeLab
     private CrimeLab(Context appContext)
     {
         mAppContext = appContext;
-        mCrimes = new ArrayList<Crime>();
+        //mCrimes = new ArrayList<Crime>();
 
         mCrimes = new ArrayList<Crime>();
 
         //Just populating the mCrime list with 100 crimes
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 10; i++)
         {
             Crime c = new Crime();
             c.setmTitle("Crime #" + i);
