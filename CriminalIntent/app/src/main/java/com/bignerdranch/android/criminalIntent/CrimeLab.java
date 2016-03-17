@@ -22,7 +22,7 @@ public class CrimeLab
         mCrimes = new ArrayList<Crime>();
 
         //Just populating the mCrime list with 100 crimes
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 50; i++)
         {
             Crime c = new Crime();
             c.setmTitle("Crime #" + i);
@@ -33,6 +33,7 @@ public class CrimeLab
 
     //Having the context parameter alllows the singleton to start activities, access project resources
     //and find the applications private storage, and more
+    //Creates the instance of this singleton. If its created then
     public static CrimeLab get(Context c)
     {
         if(sCrimeLab==null)

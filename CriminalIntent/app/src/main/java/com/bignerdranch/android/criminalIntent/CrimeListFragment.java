@@ -1,6 +1,7 @@
 package com.bignerdranch.android.criminalIntent;
 
 import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,7 +33,8 @@ public class CrimeListFragment extends android.support.v4.app.ListFragment
         //ArrayAdapter<Crime> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_expandable_list_item_1, mCrimes);
         CrimeAdapter adapter = new CrimeAdapter(mCrimes);
 
-        setListAdapter(adapter);
+        //Calls the getview below and will display or inflate the list view.
+       setListAdapter(adapter);
     }
 
     @Override
@@ -40,7 +42,26 @@ public class CrimeListFragment extends android.support.v4.app.ListFragment
     {
        // Crime c = (Crime)(getListAdapter()).getItem(position);
         Crime c = ((CrimeAdapter)getListAdapter()).getItem(position);
-        Log.d(TAG, c.getmTitle() + " was clicked");
+        Log.v(TAG, c.getmTitle() + " was clicked");
+
+        //Starting activity
+        //This was when we were just using CrimeActivity
+//        Intent i = new Intent(getActivity(),CrimeActivity.class);
+
+        //NOw we are using the viewpager
+        Intent i = new Intent(getActivity(), CrimePagerActivity.class);
+        i.putExtra("CrimeId", c.getmID());
+        startActivity(i);
+
+        Log.v("id", " " + c.getmID());
+
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        ((CrimeAdapter)getListAdapter()).notifyDataSetChanged();
     }
 
     private class CrimeAdapter extends ArrayAdapter<Crime>
@@ -57,16 +78,17 @@ public class CrimeListFragment extends android.support.v4.app.ListFragment
             // if we weren't given a view, inflate one
             if (null == convertView)
             {
-                convertView = getActivity().getLayoutInflater()
-                        .inflate(R.layout.list_item_crime, null);
+                convertView = getActivity().getLayoutInflater().inflate(R.layout.list_item_crime, null);
             }
 
             // configure the view for this Crime
             Crime c = getItem(position);
 
-            TextView titleTextView =
-                    (TextView)convertView.findViewById(R.id.crime_list_item_titleTextView);
+            TextView titleTextView = (TextView)convertView.findViewById(R.id.crime_list_item_titleTextView);
+
             titleTextView.setText(c.getmTitle());
+
+
             TextView dateTextView =
                     (TextView)convertView.findViewById(R.id.crime_list_item_dateTextView);
             dateTextView.setText(c.getmDate().toString());

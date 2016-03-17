@@ -20,6 +20,7 @@ public class Crime
         //Generate unique identifier
         mID= UUID.randomUUID();
         //Sets the date to the current date by using default constructor
+
         //formatting the date
         mDate = new Date();
 
