@@ -165,7 +165,7 @@ public class CrimeFragment extends Fragment
             SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM d, yyyy.");
             Log.v("NEWDATE " , mCrime.getmDate().toString());
 
-//            mDateButton.setText("Changed");
+//            mDateButton.setText("Changed"); adding
 
             updateDate();
             updateTime();
