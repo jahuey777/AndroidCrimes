@@ -76,10 +76,6 @@ public class CrimePagerActivity extends FragmentActivity
 
             }
         });
-
     }
-
-
-
 
 }

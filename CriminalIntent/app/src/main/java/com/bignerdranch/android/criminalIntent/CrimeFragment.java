@@ -33,8 +33,11 @@ public class CrimeFragment extends Fragment
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
 
+    private Button mTimeButton;
+
     private static final String DIALOG_DATE = "date";
     private static final int REQUEST_DATE = 0;
+    private static final int REQUEST_TIME = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -93,10 +96,12 @@ public class CrimeFragment extends Fragment
         });
 
         mDateButton = (Button) v.findViewById(R.id.crime_date);
+        mTimeButton = (Button) v.findViewById(R.id.crime_time);
 
-        //Changing the format of the date to display.
-        SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM d, yyyy.");
-        mDateButton.setText(formatter.format(mCrime.getmDate()).toString());
+        //Displaying the date and time.
+        updateDate();
+        updateTime();
+
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,6 +114,20 @@ public class CrimeFragment extends Fragment
                 //Sets the target and request code
                 dialog.setTargetFragment(CrimeFragment.this, REQUEST_DATE);
                 dialog.show(fm,DIALOG_DATE);
+            }
+        });
+
+        mTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                TimePickerFragment dialog = TimePickerFragment.newInstance(mCrime.getmDate());
+
+                dialog.setTargetFragment(CrimeFragment.this, REQUEST_TIME);
+                    dialog.show(fm, "hi");
+
+
             }
         });
 
@@ -146,11 +165,56 @@ public class CrimeFragment extends Fragment
             SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM d, yyyy.");
             Log.v("NEWDATE " , mCrime.getmDate().toString());
 
-            mDateButton.setText("Changed");        }
+//            mDateButton.setText("Changed");
+
+            updateDate();
+            updateTime();
+        }
+        else if (requestCode==REQUEST_TIME)
+        {
+
+            Date date = (Date)intent
+                    .getSerializableExtra(TimePickerFragment.EXTRA_TIME);
+
+            Log.v("Time ", " hit and date is " + date.toString());
+
+            mCrime.setmDate(date);
+            updateTime();
+        }
     }
 
-    public void updateDate() {
-        mDateButton.setText(mCrime.getmDate().toString());
+    public void updateDate()
+    {
+        SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM d, yyyy.");
+        mDateButton.setText(formatter.format(mCrime.getmDate()).toString());
+    }
+
+    public void updateTime()
+    {
+        String min = "m:";
+        String hour = "h:";
+        String sec = "s";
+
+        if(mCrime.getmDate().getSeconds()<10)
+        {
+            sec = "0s";
+        }
+        Log.v("Hours", " " + mCrime.getmDate().getHours());
+        Log.v("Hoursmins", " " + mCrime.getmDate().getMinutes());
+        Log.v("Hourssec", " " + mCrime.getmDate().getMinutes());
+
+        if(mCrime.getmDate().getHours()>12)
+        {
+            hour = "0h:";
+        }
+        if(mCrime.getmDate().getMinutes()<10)
+        {
+            min = "0m:";
+        }
+
+        SimpleDateFormat formatter = new SimpleDateFormat(hour + min + sec);
+        mTimeButton.setText(formatter.format(mCrime.getmDate().getTime()));
+
     }
 
 }

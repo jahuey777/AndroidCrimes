@@ -1,5 +1,6 @@
 package com.bignerdranch.android.criminalIntent;
 
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +14,7 @@ public class Crime
     private UUID mID;
     private String mTitle;
     private Date mDate;
+//    private Time mtime;
     private boolean mSolved;
 
     public Crime()

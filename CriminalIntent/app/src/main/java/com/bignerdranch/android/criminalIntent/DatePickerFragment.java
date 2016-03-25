@@ -12,9 +12,11 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 /**
  * Created by jaimejahuey on 3/14/16.
@@ -50,6 +52,11 @@ public class DatePickerFragment extends DialogFragment
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+//        int hour = calendar.get(Calendar.HOUR);
+//        int minute = calendar.get(Calendar.MINUTE);
+//        int second = calendar.get(Calendar.SECOND);
+//        Log.v("Checking " , hour + ":" + minute  + ":" +  second);
 
        // DatePicker dp = new  DatePicker(getActivity());
 
@@ -101,6 +108,7 @@ public class DatePickerFragment extends DialogFragment
 
         //Gets the REQUEST_DATE integer from crimeFrabment, so the 0.
         //onActivityResult method is called in CrimeFragment
+        //getTargetRequestCode() gets its value from the setTargetFragment in the mdate listener
         getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, i);
 
     }
